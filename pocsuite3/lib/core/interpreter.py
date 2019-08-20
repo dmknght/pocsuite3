@@ -83,8 +83,8 @@ class BaseInterpreter(object):
                 logger.info("Pocsuite stopped")
                 break
             except KeyboardInterrupt:
-                logger.info("User Quit")
-                break
+                logger.info("Use exit to quit")
+                # break
 
     def complete(self, text, state):
         """Return the next possible completion for 'text'.
