@@ -205,7 +205,7 @@ class PocsuiteInterpreter(BaseInterpreter):
 
     @property
     def module_metadata(self):
-        return getattr(self.current_module, "pocsuite3_module_path")
+        return getattr(self.current_module, "pocsuite3_module_path").split("pocs/")[-1]
 
     @property
     def prompt(self):
