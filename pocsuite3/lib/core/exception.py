@@ -1,62 +1,62 @@
 class PocsuiteBaseException(Exception):
-    pass
+	pass
 
 
 class PocsuiteUserQuitException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteShellQuitException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteDataException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteGenericException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteSystemException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteFilePathException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteConnectionException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteThreadException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteValueException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteMissingPrivileges(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteSyntaxException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteValidationException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuiteMissingMandatoryOptionException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuitePluginBaseException(PocsuiteBaseException):
-    pass
+	pass
 
 
 class PocsuitePluginDorkException(PocsuitePluginBaseException):
-    pass
+	pass

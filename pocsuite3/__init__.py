@@ -10,5 +10,4 @@ __package__ = 'pocsuite3'
 from .lib.core.common import set_paths
 from .cli import module_path
 
-
 set_paths(module_path())

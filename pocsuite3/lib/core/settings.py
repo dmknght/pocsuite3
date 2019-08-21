@@ -11,11 +11,11 @@ REVISION = get_revision_number()
 SITE = "http://pocsuite.org"
 VERSION_STRING = "pocsuite/%s%s" % (VERSION, "-%s" % REVISION if REVISION else "-nongit-%s" % time.strftime("%Y%m%d",
                                                                                                             time.gmtime(
-                                                                                                                os.path.getctime(
-                                                                                                                    __file__.replace(
-                                                                                                                        '.pyc',
-                                                                                                                        '.py') if __file__.endswith(
-                                                                                                                        'pyc') else __file__))))
+	                                                                                                            os.path.getctime(
+		                                                                                                            __file__.replace(
+			                                                                                                            '.pyc',
+			                                                                                                            '.py') if __file__.endswith(
+			                                                                                                            'pyc') else __file__))))
 
 IS_WIN = True if (sys.platform in ["win32", "cygwin"] or os.name == "nt") else False
 PLATFORM = os.name
@@ -46,20 +46,20 @@ BOLD_PATTERNS = ("' is vulnerable", "success", "\d    ",)
 OLD_VERSION_CHARACTER = ("from comm import cmdline", "from comm import generic")
 POCSUITE_VERSION_CHARACTER = ("from pocsuite.poc import", "from pocsuite.net import")
 POC_IMPORTDICT = {
-    "import urlparse": "from urllib import parse as urlparse",
-    "import urllib2": "from urllib import request as urllib2",
-    "import urllib": "from urllib import parse as urllib",
-    "from urlparse import": "from urllib.parse import",
-    "from pocsuite.net import req": "from pocsuite3.lib.request import requests as req",
-    "from pocsuite.api.request import req": "from pocsuite3.lib.request import requests as req",
-    "from pocsuite.poc import": "from pocsuite3.lib.core.poc import",
-    "from pocsuite.api.poc import": "from pocsuite3.lib.core.poc import",
-    "from pocsuite.utils import register": "from pocsuite3.lib.core.register import register_poc as register",
-    "from pocsuite.lib.utils.funs import randomStr": "from pocsuite3.lib.utils import random_str as randomStr",
-    "from pocsuite.api.utils import randomStr": "from pocsuite3.lib.utils import random_str as randomStr",
-    "from pocsuite.lib.utils.funs import url2ip": "from pocsuite3.lib.utils import url2ip",
-    "from pocsuite.api.utils import url2ip": "from pocsuite3.lib.utils import url2ip",
-    ".content": ".text",
+	"import urlparse": "from urllib import parse as urlparse",
+	"import urllib2": "from urllib import request as urllib2",
+	"import urllib": "from urllib import parse as urllib",
+	"from urlparse import": "from urllib.parse import",
+	"from pocsuite.net import req": "from pocsuite3.lib.request import requests as req",
+	"from pocsuite.api.request import req": "from pocsuite3.lib.request import requests as req",
+	"from pocsuite.poc import": "from pocsuite3.lib.core.poc import",
+	"from pocsuite.api.poc import": "from pocsuite3.lib.core.poc import",
+	"from pocsuite.utils import register": "from pocsuite3.lib.core.register import register_poc as register",
+	"from pocsuite.lib.utils.funs import randomStr": "from pocsuite3.lib.utils import random_str as randomStr",
+	"from pocsuite.api.utils import randomStr": "from pocsuite3.lib.utils import random_str as randomStr",
+	"from pocsuite.lib.utils.funs import url2ip": "from pocsuite3.lib.utils import url2ip",
+	"from pocsuite.api.utils import url2ip": "from pocsuite3.lib.utils import url2ip",
+	".content": ".text",
 }
 # Regular expression used for recognition of IP addresses
 IP_ADDRESS_REGEX = r"\b(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\b"

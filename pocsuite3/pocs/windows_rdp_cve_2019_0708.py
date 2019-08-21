@@ -76,7 +76,8 @@ class TestPOC(POCBase):
 	
 	def _log(self, message):
 		pass
-		# print(message)
+	
+	# print(message)
 	
 	def _bin_to_hex(self, data):
 		return ''.join('%.2x' % i for i in data)

