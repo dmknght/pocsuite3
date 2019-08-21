@@ -186,13 +186,14 @@ class PocsuiteInterpreter(BaseInterpreter):
         self.last_search = []
         self.last_ip = []
         self.main_modules_dirs = []
-        for module in self.modules:
-            temp_module = module
-            if IS_WIN:
-                temp_module = temp_module.replace("/", "\\")
-                temp_module = temp_module.replace(paths.POCSUITE_ROOT_PATH, "").lstrip("\\")
-            temp_module = temp_module.replace(paths.POCSUITE_ROOT_PATH, "").lstrip("/")
-            self.main_modules_dirs.append(temp_module)
+        self.main_modules_dirs = [x.split("pocs/")[-1] for x in self.modules]
+        # for module in self.modules:
+        #     temp_module = module
+        #     if IS_WIN:
+        #         temp_module = temp_module.replace("/", "\\")
+        #         temp_module = temp_module.replace(paths.POCSUITE_ROOT_PATH, "").lstrip("\\")
+        #     temp_module = temp_module.replace(paths.POCSUITE_ROOT_PATH, "").lstrip("/")
+        #     self.main_modules_dirs.append(temp_module)
 
         self.__parse_prompt()
 
@@ -290,6 +291,7 @@ class PocsuiteInterpreter(BaseInterpreter):
         data_to_stdout("\n")
 
     def command_use(self, module_path, *args, **kwargs):
+        module_path = "pocs/%s" %(module_path)
         if module_path.isdigit():
             index = int(module_path)
             if index >= len(self.last_search):
