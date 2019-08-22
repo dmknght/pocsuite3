@@ -29,7 +29,7 @@ def start():
 	if conf.mode == "shell" and not conf.api:
 		info_msg = "connect back ip: {0}    port: {1}".format(conf.connect_back_host, conf.connect_back_port)
 		logger.info(info_msg)
-		info_msg = "watting for shell connect to pocsuite"
+		info_msg = "waiting for shell connect to pocsuite"
 		logger.info(info_msg)
 		if conf.console_mode:
 			handle_listener_connection_for_console()
