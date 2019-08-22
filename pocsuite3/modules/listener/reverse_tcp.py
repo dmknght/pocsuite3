@@ -100,8 +100,7 @@ def list_clients():
 
 def get_client(cmd):
 	try:
-		target = cmd.replace("select ", "")
-		target = int(target)
+		target = int(cmd.replace("select ", ""))
 		client = kb.data.clients[target]  # Connect to the selected clients
 		data_to_stdout("Now Connected: {0}\n".format(str(kb.data.clients[target].address[0])))
 		return client
