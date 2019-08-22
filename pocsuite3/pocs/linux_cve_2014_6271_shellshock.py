@@ -53,7 +53,7 @@ class DemoPOC(POCBase):
 	def _options(self):
 		o = OrderedDict()
 		payload = {
-			"nc": REVERSE_PAYLOAD.NC, # format -> hard coded payuload with invalid param
+			"nc": REVERSE_PAYLOAD.NC, # format -> hard coded payload with invalid param
 			"bash": REVERSE_PAYLOAD.BASH,
 		}
 		o["command"] = OptDict(selected = "bash", default = payload)
