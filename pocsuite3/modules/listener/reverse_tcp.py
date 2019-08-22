@@ -243,7 +243,7 @@ def print_cmd_help():
 	data_to_stdout(msg)
 
 
-def handle_listener_connection_for_console(wait_time = 3, try_count = 3):
+def handle_listener_connection_for_console(wait_time = 5, try_count = 3):
 	cmd = "select 0"
 	client = get_client(cmd)
 	if client is not None:
