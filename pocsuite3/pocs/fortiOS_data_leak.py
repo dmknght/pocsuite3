@@ -69,7 +69,7 @@ class DemoPOC(POCBase):
 					else:
 						data += "."
 
-			find_data = r"(?:\.\.\.)([0-9\.]+)\.\.\.([a-zA-Z0-9\-_]+)\.\.\.([a-zA-Z0-9\-_]+)\.\.\.([a-zA-Z0-9\-\_]+)\.\.([a-zA-Z0-9\-_]+)\.\.\.([a-zA-Z0-9\-_]+)"
+			find_data = r"\.+([0-9\.]+)\.\.\.([a-zA-Z0-9\-_]+)\.+([a-zA-Z0-9\-_]+)\.+([a-zA-Z0-9\-\_]+)\.+([a-zA-Z0-9\-_]+)\.+([a-zA-Z0-9\-_]+)"
 			ret = "\n"
 			for dIP, dUser, dPassword, dDomain, dPermission, dGroup in re.findall(find_data, data):
 				if dUser not in ret:
