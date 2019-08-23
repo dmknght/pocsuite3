@@ -433,8 +433,8 @@ class TestPOC(POCBase):
 	def _attack(self):
 		return self._verify()
 	
-	def _shell(self):
-		return
+	# def _shell(self):
+	# 	return
 	
 	def parse_output(self, result):
 		output = Output(self)
