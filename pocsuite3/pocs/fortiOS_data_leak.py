@@ -78,7 +78,10 @@ class DemoPOC(POCBase):
 					)
 			result = {}
 			result['Leak'] = {}
-			result['Leak']['DataLeak'] = ret
+			if ret == "\n":
+				result['Leak']['DataLeak'] = data
+			else:
+				result['Leak']['DataLeak'] = ret
 			output = Output(self)
 			output.success(result)
 			return output
