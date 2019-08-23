@@ -12,7 +12,7 @@ class DemoPOC(POCBase):
     appPowerLink = ''
     appName = 'FortiOS'
     appVersion = '5.6.3 <= 5.6.7; 6.0.0 <= 6.0.4'
-    vulType = 'Data exposure'
+    vulType = 'Data Disclosure'
     desc = '''
         SSLVPN Fortinet allows attackers read password in cleartext in /dev/cmdb/sslvpn_websession via crafted URL
         Google Dork: intext:"Please Login" inurl:"/remote/login"
