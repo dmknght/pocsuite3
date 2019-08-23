@@ -433,7 +433,7 @@ class PocsuiteInterpreter(BaseInterpreter):
 		tb = prettytable.PrettyTable(["Index", "Path", "Name"])
 		index = 0
 		for tmp_module in self.main_modules_dirs:
-			found = os.path.join(paths.POCSUITE_ROOT_PATH, tmp_module + ".py")
+			found = os.path.join(paths.POCSUITE_ROOT_PATH, "pocs/" + tmp_module + ".py")
 			with open(found, encoding = 'utf-8') as f:
 				code = f.read()
 			name = get_poc_name(code)
