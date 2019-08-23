@@ -31,7 +31,7 @@ url_dict = ["/cgi-bin/load.cgi",
 
 
 class DemoPOC(POCBase):
-	vulID = '0'
+	vulID = 'CVE-2014-6271'
 	version = '1'
 	author = ['shenyi', 'dmknght']
 	vulDate = '2014-10-16'
