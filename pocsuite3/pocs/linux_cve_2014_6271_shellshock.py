@@ -53,7 +53,7 @@ class DemoPOC(POCBase):
 	def _options(self):
 		o = OrderedDict()
 		payload = {
-			"nc": REVERSE_PAYLOAD.NC, # format -> hard coded payload with invalid param
+			"nc": REVERSE_PAYLOAD.NC,
 			"bash": REVERSE_PAYLOAD.BASH,
 			"cmd": "whoami",
 		}
