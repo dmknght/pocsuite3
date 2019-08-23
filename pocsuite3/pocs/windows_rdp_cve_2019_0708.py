@@ -65,7 +65,7 @@ class TestPOC(POCBase):
 	createDate = '2019-05-21'
 	updateDate = '2019-05-21'
 	references = ['https://www.seebug.org/vuldb/ssvid-97954']
-	name = 'windows rdp rce (cve-2019-0708)'
+	name = 'BlueKeep: Windows RDP Remote Code Execution (cve-2019-0708)'
 	appPowerLink = 'https://www.microsoft.com'
 	appName = 'rdp'
 	appVersion = 'win7, win2k8, win2k8 r2, win2k3, winxp'
