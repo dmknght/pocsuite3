@@ -643,11 +643,11 @@ def init():
 	update()
 	_set_multiple_targets()
 	_set_user_pocs_path()
-	_set_pocs_modules()
 	_set_plugins()  # load plugins
 	_init_targets_plugins()
 	_init_pocs_plugins()
 	_set_task_queue()
+	_set_pocs_modules()
 	_init_results_plugins()
 	
 	if any((conf.url, conf.url_file)):
